@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Prep - Stats, ML, LLM & Agentic AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .section-card p {
+            color: #666;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .topic {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .topic h3 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic h4 {
+            color: #667eea;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .topic p {
+            color: #555;
+            margin: 0.5rem 0;
+        }
+
+        .interview-trap {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .interview-trap h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .intuition {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .intuition h4 {
+            color: #155724;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-nav {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">📚 Interview Prep</a>
+                <ul class="nav-links">
+                    <li><a href="#stats">📊 Statistics</a></li>
+                    <li><a href="#ml">🤖 Machine Learning</a></li>
+                    <li><a href="#llm">🧠 LLM</a></li>
+                    <li><a href="#agentic">🎯 Agentic AI</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>🎯 Comprehensive Interview Preparation Guide</h1>
+        <p>Master Statistics, Machine Learning, Large Language Models, and Agentic AI with curated interview questions, intuitive explanations, and common pitfalls to avoid.</p>
+    </div>
+
+    <div class="section-nav">
+        <div class="section-card" onclick="document.getElementById('stats').scrollIntoView({behavior: 'smooth'})">
+            <div class="icon">📊</div>
+            <h3>Statistics</h3>
+            <p>Fundamental concepts from descriptive stats to hypothesis testing</p>
+        </div>
+        <div class="section-card" onclick="document.getElementById('ml').scrollIntoView({behavior: 'smooth'})">
+            <div class="icon">🤖</div>
+            <h3>Machine Learning</h3>
+            <p>Core ML algorithms, time series, and model evaluation techniques</p>
+        </div>
+        <div class="section-card" onclick="document.getElementById('llm').scrollIntoView({behavior: 'smooth'})">
+            <div class="icon">🧠</div>
+            <h3>LLM</h3>
+            <p>Transformer architectures, attention mechanisms, and prompt engineering</p>
+        </div>
+        <div class="section-card" onclick="document.getElementById('agentic').scrollIntoView({behavior: 'smooth'})">
+            <div class="icon">🎯</div>
+            <h3>Agentic AI</h3>
+            <p>Autonomous agents, planning, reasoning, and multi-agent systems</p>
+        </div>
+    </div>
+
+    <!-- STATISTICS SECTION -->
+    <div id="stats" class="content-section">
+        <h2>📊 Statistics</h2>
+        
+        <div class="topic">
+            <h3>1. Mean vs. Median</h3>
+            <p><strong>What it is:</strong> The mean is the arithmetic average. The median is the middle value when data is sorted.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>The mean is the "center of gravity" of the data; the median is the "50th percentile."</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>2. Variance & 3. Standard Deviation</h3>
+            <p><strong>What it is:</strong> Variance measures the average squared deviation from the mean. Standard Deviation (SD) is the square root of the variance.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Variance tells you how spread out the data is, but because it's squared, the units are weird (e.g., "dollars squared"). SD brings the metric back to the original units of the data (e.g., "dollars").</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Why divide by n-1 instead of n for sample variance?</strong> This is called Bessel's correction. We divide by n-1 to make the sample variance an unbiased estimator of the population variance. (Because a sample tends to have less spread than the whole population, dividing by n would underestimate the true variance).</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>4. Probability Distributions</h3>
+            <p><strong>What it is:</strong> A mathematical function that provides the probabilities of occurrence of different possible outcomes.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p><strong>Discrete:</strong> Probability Mass Function (PMF). Examples: Binomial (coin flips), Poisson (events over time).</p>
+                <p><strong>Continuous:</strong> Probability Density Function (PDF). Examples: Normal, Exponential, Uniform. (Note: For continuous variables, the probability of any exact single value is 0; we calculate probability over a range).</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>5. Normal Distribution</h3>
+            <p><strong>What it is:</strong> The classic symmetric, bell-shaped curve defined entirely by its mean (μ) and standard deviation (σ).</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>It represents data where most observations cluster around the central peak, and probabilities for values further away taper off equally in both directions.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Know the Empirical Rule (68-95-99.7 rule):</strong> ~68% of data falls within 1 SD, ~95% within 2 SD, and ~99.7% within 3 SD.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>6. Correlation vs. Covariance</h3>
+            <p><strong>What it is:</strong> Covariance indicates the direction of the linear relationship between two variables. Correlation measures both the direction and strength.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Covariance is scale-dependent (if you change units from meters to centimeters, covariance changes wildly). Correlation is just covariance divided by the product of their standard deviations, scaling it to a strict range of -1 to 1.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Does correlation imply causation?</strong> No. Also, correlation only measures linear relationships. Two variables can have a perfect non-linear relationship (like y=x²) but a correlation of 0.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>7. Central Limit Theorem (CLT)</h3>
+            <p><strong>What it is:</strong> The theorem stating that the distribution of sample means approximates a normal distribution as the sample size gets larger, regardless of the population's actual distribution.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>If you take 1,000 samples of 50 people from a highly skewed population, and plot the means of those 1,000 samples, that plot will be a perfect bell curve.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Why is CLT so important?</strong> It is the foundational reason we can use parametric statistical tests (like t-tests) and calculate confidence intervals in the real world, even when real-world data isn't perfectly normal. (Rule of thumb: n≥30 is usually enough for CLT to kick in).</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>8. Confidence Interval (CI)</h3>
+            <p><strong>What it is:</strong> A range of values, derived from sample statistics, that is likely to contain the value of an unknown population parameter.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap (CRITICAL)</h4>
+                <p><strong>What does a 95% Confidence Interval actually mean?</strong></p>
+                <p>❌ DO NOT SAY: "There is a 95% probability that the true mean lies within this specific interval."</p>
+                <p>✅ Correct Answer: "If we were to take 100 different samples and compute a 95% CI for each, approximately 95 of those intervals would contain the true population mean, and 5 would not." (Frequentist interpretation).</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>9. Hypothesis Testing</h3>
+            <p><strong>What it is:</strong> A formal procedure to investigate our ideas about the world using statistics. We set up a Null Hypothesis (H₀, usually "no effect" or "status quo") and an Alternative Hypothesis (H₁, what we want to prove).</p>
+        </div>
+
+        <div class="topic">
+            <h3>10. p-value</h3>
+            <p><strong>What it is:</strong> The probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>What is a common misconception about the p-value?</strong> People think it is the probability that the null hypothesis is true (e.g., "a p-value of 0.03 means there's a 3% chance the null is true"). This is false. It is the probability of the data given the null, not the probability of the null given the data.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>11. Type I & Type II Error</h3>
+            <p><strong>What it is:</strong></p>
+            <p><strong>Type I Error (α):</strong> False Positive. You reject the Null Hypothesis when it is actually true. (Crying wolf).</p>
+            <p><strong>Type II Error (β):</strong> False Negative. You fail to reject the Null Hypothesis when it is actually false. (Missing the wolf).</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>How do you reduce both Type I and Type II errors at the same time?</strong> You can't just tweak the significance level (α), because lowering Type I error increases Type II error. The only way to reduce both simultaneously is to increase the sample size.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>12. Bayes Theorem</h3>
+            <p><strong>What it is:</strong> P(A|B) = (P(B|A) × P(A)) / P(B). It describes the probability of an event, based on prior knowledge of conditions that might be related to the event.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>It's a mathematical way to update your beliefs. Prior Belief × New Evidence = Updated Belief (Posterior).</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Be ready for a "Base Rate Fallacy" question:</strong> e.g., "A disease affects 1 in 1,000 people. A test is 99% accurate. If you test positive, what is the chance you have the disease?" Answer: It's actually only about 9%, because the disease is so rare. Bayes theorem accounts for the low base rate.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>13. Maximum Likelihood Estimation (MLE)</h3>
+            <p><strong>What it is:</strong> A method of estimating the parameters of a statistical model by finding the parameter values that maximize the likelihood of making the observations given the parameters.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>"Given the data I actually see, what model parameters make this data most probable?"</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>How does MLE relate to Ordinary Least Squares (OLS) in linear regression?</strong> If you assume the errors in linear regression are normally distributed, maximizing the likelihood (MLE) yields the exact same coefficient estimates as minimizing the sum of squared errors (OLS).</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>14. Multicollinearity</h3>
+            <p><strong>What it is:</strong> A situation in multiple regression where two or more independent variables are highly correlated.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>If X₁ and X₂ move together perfectly, the model doesn't know which one is actually causing the change in Y.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Does multicollinearity affect the predictive power of the model?</strong> No, the overall model predictions (R²) can still be great.</p>
+                <p><strong>What does it affect?</strong> It inflates the standard errors of the individual coefficients, making them unstable, unreliable, and hard to interpret.</p>
+                <p><strong>How to fix it?</strong> Drop one of the variables, use PCA, or use regularization (Ridge/Lasso).</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>15. Bias-Variance Tradeoff</h3>
+            <p><strong>What it is:</strong> The property of a model where minimizing Bias increases Variance, and vice versa.</p>
+            <p><strong>Bias:</strong> Error from erroneous assumptions in the learning algorithm (leads to Underfitting).</p>
+            <p><strong>Variance:</strong> Error from sensitivity to small fluctuations in the training set (leads to Overfitting).</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Total Error = Bias² + Variance + Irreducible Error. You want a model that is complex enough to capture the true signal (low bias) but not so complex that it memorizes the noise (low variance).</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>How does this apply to specific algorithms?</strong></p>
+                <p>• Linear Regression: High Bias, Low Variance</p>
+                <p>• Decision Trees / KNN (with low K): Low Bias, High Variance</p>
+                <p><strong>How do we fix high variance?</strong> Add more data, reduce features, or use Bagging (Random Forest).</p>
+                <p><strong>How do we fix high bias?</strong> Add more features, increase model complexity, or use Boosting.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MACHINE LEARNING SECTION -->
+    <div id="ml" class="content-section">
+        <h2>🤖 Machine Learning & Time Series</h2>
+        
+        <div class="topic">
+            <h3>1. Trend & 2. Seasonality</h3>
+            <p><strong>What they are:</strong> Trend is the long-term progression or direction of the series (e.g., global temperatures rising). Seasonality is a repeating, fixed-frequency pattern (e.g., ice cream sales peaking every July).</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>What is the difference between Seasonality and Cyclicality?</strong> Cycles (like economic recessions) fluctuate but do not have a fixed frequency. Seasonality always has a fixed, known period (e.g., 12 months, 7 days).</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>3. Stationarity</h3>
+            <p><strong>What it is:</strong> A time series is stationary if its statistical properties—mean, variance, and autocovariance—are constant over time. It has no trend or seasonality.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap (CRITICAL)</h4>
+                <p><strong>Why do we care about stationarity?</strong> Because most statistical forecasting models (like ARIMA) assume the data is stationary. If the mean is changing (trend), the model's past learnings won't apply to the future.</p>
+                <p><strong>How do we make data stationary?</strong> Differencing (subtracting yesterday's value from today's) or transformations (like Log or Box-Cox to stabilize variance).</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>4. White Noise vs. 5. Random Walk</h3>
+            <p><strong>White Noise:</strong> A sequence of completely random, independent variables with a mean of zero and constant variance. It has zero autocorrelation. You cannot forecast it.</p>
+            <p><strong>Random Walk:</strong> A series where the next value is equal to the current value plus a random white noise shock (Yₜ = Yₜ₋₁ + εₜ).</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Is a Random Walk stationary?</strong> No. Because its variance grows infinitely over time.</p>
+                <p><strong>Is it white noise?</strong> No. White noise has no autocorrelation, but a random walk is highly autocorrelated with its past.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>6. Moving Average (MA) & 7. Weighted Moving Average</h3>
+            <p><strong>What they are:</strong> Forecasting the next period by taking the simple average (or weighted average) of the last k periods.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap (CRITICAL)</h4>
+                <p>In classical smoothing, "Moving Average" means averaging past actual values. In ARIMA modeling, the "MA" component means modeling past forecast errors. Do not confuse these two in an interview.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>8. Exponential Smoothing (Simple)</h3>
+            <p><strong>What it is:</strong> Instead of giving equal weight to the last k periods, it applies exponentially decreasing weights to all past observations. It requires one parameter: α (smoothing factor between 0 and 1).</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>High α (close to 1) means you react quickly to recent changes. Low α means you smooth out noise and rely more on history.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>9. Holt's Method (Double Exponential Smoothing)</h3>
+            <p><strong>What it is:</strong> Simple exponential smoothing cannot handle Trend. Holt's method adds a second equation to capture the trend. It uses two parameters: α (for the level) and β (for the trend).</p>
+        </div>
+
+        <div class="topic">
+            <h3>10. Holt-Winters (Triple Exponential Smoothing)</h3>
+            <p><strong>What it is:</strong> Holt's method cannot handle Seasonality. Holt-Winters adds a third equation for the seasonal component. It uses three parameters: α (level), β (trend), and γ (seasonality).</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Additive vs. Multiplicative seasonality:</strong></p>
+                <p>• Use <strong>Additive</strong> if the seasonal fluctuations are roughly constant in absolute size.</p>
+                <p>• Use <strong>Multiplicative</strong> if the seasonal fluctuations grow proportionally as the trend increases (very common in retail/sales).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LLM SECTION -->
+    <div id="llm" class="content-section">
+        <h2>🧠 Large Language Models (LLM)</h2>
+        
+        <div class="topic">
+            <h3>1. Transformer Architecture</h3>
+            <p><strong>What it is:</strong> The foundational architecture behind modern LLMs, introduced in "Attention Is All You Need" (2017).</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Transformers process entire sequences in parallel (unlike RNNs) using self-attention mechanisms to weigh the importance of different words regardless of their position.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Key components to know:</strong> Multi-head attention, positional encoding, feed-forward networks, layer normalization, and residual connections.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>2. Self-Attention Mechanism</h3>
+            <p><strong>What it is:</strong> A mechanism that allows the model to weigh the importance of different words in a sequence when encoding each word.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>For each word, attention computes Query (Q), Key (K), and Value (V) vectors. Attention(Q,K,V) = softmax(QK^T/√d_k)V</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Why divide by √d_k?</strong> To prevent dot products from becoming too large, which would push softmax into regions with extremely small gradients.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>3. Positional Encoding</h3>
+            <p><strong>What it is:</strong> Since transformers don't have inherent sequence order like RNNs, positional encodings inject information about token positions.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Uses sine and cosine functions of different frequencies to uniquely represent each position, allowing the model to learn relative positions.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>4. Multi-Head Attention</h3>
+            <p><strong>What it is:</strong> Multiple attention heads running in parallel, each learning different representation subspaces.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Like having multiple "perspectives" - one head might focus on syntactic relationships, another on semantic meaning, another on long-range dependencies.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>5. Encoder vs. Decoder</h3>
+            <p><strong>Encoder:</strong> Processes input sequence bidirectionally (sees all tokens at once). Used in BERT.</p>
+            <p><strong>Decoder:</strong> Processes output sequence unidirectionally with masking (can only see previous tokens). Used in GPT.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>When to use which?</strong> Encoder-only for understanding tasks (classification, NER). Decoder-only for generation tasks. Encoder-decoder for translation/summarization.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>6. Pre-training Objectives</h3>
+            <p><strong>Masked Language Modeling (MLM):</strong> Predict masked tokens from context (BERT).</p>
+            <p><strong>Causal Language Modeling:</strong> Predict next token given previous tokens (GPT).</p>
+            <p><strong>Next Sentence Prediction:</strong> Predict if two sentences are consecutive (BERT).</p>
+        </div>
+
+        <div class="topic">
+            <h3>7. Fine-tuning Strategies</h3>
+            <p><strong>Full Fine-tuning:</strong> Update all model parameters.</p>
+            <p><strong>PEFT (Parameter-Efficient Fine-tuning):</strong> LoRA, Adapter layers, Prefix tuning.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>LoRA freezes original weights and learns low-rank decomposition matrices, dramatically reducing trainable parameters while maintaining performance.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>8. Prompt Engineering</h3>
+            <p><strong>Zero-shot:</strong> Direct task without examples.</p>
+            <p><strong>Few-shot:</strong> Provide examples in the prompt.</p>
+            <p><strong>Chain-of-Thought:</strong> Encourage step-by-step reasoning.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Why does CoT work?</strong> It breaks complex problems into intermediate steps, allowing the model to allocate more computation and reduce errors in multi-step reasoning.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>9. Hallucination</h3>
+            <p><strong>What it is:</strong> When LLMs generate factually incorrect or nonsensical information that appears plausible.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>How to mitigate?</strong> Retrieval-Augmented Generation (RAG), better grounding, uncertainty estimation, fact-checking mechanisms, and constrained decoding.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>10. RAG (Retrieval-Augmented Generation)</h3>
+            <p><strong>What it is:</strong> Combines retrieval from external knowledge bases with LLM generation.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Retrieve relevant documents → Augment prompt with retrieved context → Generate answer grounded in facts.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Benefits:</strong> Reduces hallucination, provides up-to-date information, enables domain-specific knowledge without retraining.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>11. Scaling Laws</h3>
+            <p><strong>What it is:</strong> Empirical relationships showing how model performance improves with more parameters, data, and compute.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Performance follows a power law: doubling compute gives predictable improvements. Optimal allocation balances model size, dataset size, and training iterations.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>12. Tokenization</h3>
+            <p><strong>What it is:</strong> Converting text into numerical tokens the model can process.</p>
+            <p><strong>Common methods:</strong> BPE (Byte-Pair Encoding), WordPiece, SentencePiece.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Why subword tokenization?</strong> Balances vocabulary size with ability to handle rare/out-of-vocabulary words. "unbelievable" might become ["un", "believ", "able"].</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AGENTIC AI SECTION -->
+    <div id="agentic" class="content-section">
+        <h2>🎯 Agentic AI</h2>
+        
+        <div class="topic">
+            <h3>1. What is an AI Agent?</h3>
+            <p><strong>Definition:</strong> An autonomous system that perceives its environment, makes decisions, and takes actions to achieve goals.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Unlike passive LLMs that only respond to prompts, agents can plan, execute multi-step tasks, use tools, and adapt based on feedback.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Key components:</strong> Perception → Reasoning/Planning → Action → Feedback loop.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>2. Planning & Reasoning</h3>
+            <p><strong>Task Decomposition:</strong> Breaking complex goals into manageable subtasks.</p>
+            <p><strong>Chain-of-Thought (CoT):</strong> Step-by-step reasoning before answering.</p>
+            <p><strong>Tree-of-Thoughts:</strong> Exploring multiple reasoning paths and backtracking.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Planning allows agents to handle long-horizon tasks by creating executable roadmaps rather than reacting myopically.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>3. Tool Use / Function Calling</h3>
+            <p><strong>What it is:</strong> Agents can call external APIs, calculators, databases, or code interpreters.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>LLMs have static knowledge cutoffs. Tools let agents access real-time data, perform calculations, and interact with external systems.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Key challenges:</strong> Choosing the right tool, formatting arguments correctly, handling errors, and chaining multiple tool calls.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>4. Memory Systems</h3>
+            <p><strong>Short-term memory:</strong> Context window / conversation history.</p>
+            <p><strong>Long-term memory:</strong> Vector databases for retrieval across sessions.</p>
+            <p><strong>Working memory:</strong> Intermediate reasoning states and task progress.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>RAG for agents:</strong> Store past interactions, learned facts, and user preferences in vector DB for personalized, consistent behavior.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>5. ReAct Framework</h3>
+            <p><strong>What it is:</strong> Reason + Act paradigm where agents interleave reasoning traces with actions.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Thought → Action → Observation → Thought → ... → Final Answer</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Why ReAct works:</strong> Combines reasoning (to plan) with acting (to gather information), enabling better decision-making in interactive environments.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>6. Multi-Agent Systems</h3>
+            <p><strong>What it is:</strong> Multiple specialized agents collaborating to solve complex tasks.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Different agents can have different roles: Researcher, Coder, Reviewer, Planner. They communicate and coordinate like a team.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Challenges:</strong> Coordination overhead, conflict resolution, communication protocols, avoiding infinite loops.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>7. Reflection & Self-Correction</h3>
+            <p><strong>What it is:</strong> Agents evaluate their own outputs and iteratively improve.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Generate → Critique → Refine loop. Like having an internal reviewer that catches mistakes before finalizing.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Techniques:</strong> Self-consistency checks, unit test generation, rubric-based evaluation, adversarial prompting.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>8. Code Agents</h3>
+            <p><strong>What it is:</strong> Agents that can write, execute, and debug code autonomously.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Code is a precise action space. Agents can write Python scripts, run them in sandboxes, analyze outputs, and iterate.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Safety concerns:</strong> Sandboxing, resource limits, preventing malicious code execution, audit trails.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>9. Human-in-the-Loop</h3>
+            <p><strong>What it is:</strong> Systems where humans provide oversight, approval, or guidance at critical decision points.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Humans approve high-stakes actions, resolve ambiguities, and provide feedback for continuous improvement.</p>
+            </div>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Design considerations:</strong> When to ask for help, how to present options clearly, minimizing human effort while maintaining safety.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>10. Evaluation Metrics for Agents</h3>
+            <p><strong>Task Success Rate:</strong> Percentage of tasks completed successfully.</p>
+            <p><strong>Efficiency:</strong> Steps taken, time to completion, API costs.</p>
+            <p><strong>Robustness:</strong> Performance across diverse scenarios and edge cases.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Benchmarking:</strong> AgentBench, WebArena, SWE-bench for coding agents, custom eval harnesses for domain-specific tasks.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>11. Autonomous vs. Assisted Agents</h3>
+            <p><strong>Fully Autonomous:</strong> Complete end-to-end task execution without intervention.</p>
+            <p><strong>Assisted/Copilot:</strong> Human directs, agent suggests and executes partial tasks.</p>
+            <div class="intuition">
+                <h4>Intuition</h4>
+                <p>Trade-off between automation level and control/safety. Most production systems start assisted and gradually increase autonomy.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h3>12. Safety & Alignment</h3>
+            <p><strong>Key concerns:</strong> Preventing harmful actions, respecting constraints, maintaining honesty.</p>
+            <div class="interview-trap">
+                <h4>⚠️ Interview Trap</h4>
+                <p><strong>Safety mechanisms:</strong> Constitutional AI, RLHF for agents, action validation layers, kill switches, audit logging, permission systems.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Interview Prep Guide | Built for mastering Stats, ML, LLM & Agentic AI</p>
+            <p style="margin-top: 0.5rem;">📖 Based on Interview_ML GitHub Repository</p>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" title="Back to Top">↑</a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Back to top button visibility
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
+            }
+        });
+
+        // Initialize back to top button state
+        document.querySelector('.back-to-top').style.opacity = '0';
+        document.querySelector('.back-to-top').style.visibility = 'hidden';
+    </script>
+</body>
+</html>
